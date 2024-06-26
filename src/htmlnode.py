@@ -1,6 +1,6 @@
 class HTMLNode:
     
-    def __init__(self, tag=None, value=None, children=None, props=None):
+    def __init__(self, tag, value, children, props):
         self.tag = tag
         self.value = value
         self.children = children
@@ -11,9 +11,12 @@ class HTMLNode:
     
     def props_to_html(self):
         output = ""
-        for key, value in self.props.items():
-            output += f' {key}="{value}"'
-        return output
+        try:
+            for key, value in self.props.items():
+                
+                output += f' {key}="{value}"'
+        finally:
+            return output
     
     def __repr__(self):
         return (
