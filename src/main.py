@@ -1,13 +1,15 @@
 from textnode import TextNode
 from htmlnode import HTMLNode
 from leafnode import LeafNode
-
+from parentnode import ParentNode
 
 
 def main():
-    node1 = HTMLNode("a", "Link 1", [], {"href": "www.google.com", "target": "_blank"})
-    p_basic = LeafNode("This is a paragraph of text.", "p")
+    p_basic = LeafNode("This is bolded text.", "b")
     link_basic = LeafNode("Click me!", "a", [], {"href": "https://www.google.com"})
-    print(link_basic.to_html())
-    print(p_basic.to_html())
+    
+    pnode1 = ParentNode(children=[p_basic, link_basic], tag="p")
+    html = pnode1.to_html()
+    print(html)
+
 main()
