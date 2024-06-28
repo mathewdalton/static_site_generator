@@ -1,11 +1,11 @@
 from htmlnode import HTMLNode
 
 class ParentNode(HTMLNode):
-    def __init__(self, children, tag=None, props=None):
+    def __init__(self, tag, children, props=None, value=None):
+        super().__init__(tag, children, props, value)
         self.children = children
-        self.tag = tag
-        self.props = props
-    
+        self.__name__ = "ParentNode"
+        
     def to_html(self):
         if self.tag is None:
             raise ValueError("You must provide a tag!")
@@ -21,6 +21,6 @@ class ParentNode(HTMLNode):
         html_body = f"<{self.tag}>"
         for leaf in self.children:
             html_body += leaf.to_html()
-        html_body += f"</{self.tag}"
+        html_body += f"</{self.tag}>"
         return html_body
         

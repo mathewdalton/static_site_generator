@@ -5,6 +5,7 @@ class HTMLNode:
         self.value = value
         self.children = children
         self.props = props
+        self.__name__ = "HTMLNode"
     
     def to_html(self):
         raise NotImplementedError("HTMLNode - to_html() needs to be implemented")
@@ -13,15 +14,13 @@ class HTMLNode:
         output = ""
         try:
             for key, value in self.props.items():
-                
                 output += f' {key}="{value}"'
         finally:
             return output
     
     def __repr__(self):
-        return (
-f"""Tag: {self.tag} 
-Value: {self.value} 
-Children: {self.children} 
-Props: {self.props}"""
-            )
+        return f'{self.__name__}'\
+                f'(tag="{self.tag}", '\
+                f'value="{self.value}", '\
+                f'children={self.children}, '\
+                f'props={self.props})'
