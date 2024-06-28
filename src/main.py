@@ -1,6 +1,9 @@
 from re import Match
 from typing import Text
-from textnode import TextNode, split_node_delimiter
+from textnode import TextNode
+from inline_markdown import (
+    split_nodes_delimiter,
+)
 from htmlnode import HTMLNode
 from leafnode import LeafNode
 from parentnode import ParentNode
@@ -39,6 +42,6 @@ def main():
 
     delim_tnode = TextNode("I should **be** bold!", "text")
 
-    new_nodes = split_node_delimiter([tnode1, tnode2, delim_tnode], "**", TextNode.text_type_bold)
+    new_nodes = split_nodes_delimiter([tnode1, tnode2, delim_tnode], "**", TextNode.text_type_bold)
     print(new_nodes)
 main()
