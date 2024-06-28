@@ -10,10 +10,10 @@ class HTMLNode:
     def to_html(self):
         raise NotImplementedError("HTMLNode - to_html() needs to be implemented")
     
-    def props_to_html(self):
+    def props_to_html(self) -> str:
         output = ""
         try:
-            for key, value in self.props.items():
+            for key, value in self.props.items(): # type: ignore
                 output += f' {key}="{value}"'
         finally:
             return output

@@ -6,7 +6,7 @@ class ParentNode(HTMLNode):
         self.children = children
         self.__name__ = "ParentNode"
         
-    def to_html(self):
+    def to_html(self) -> str:
         if self.tag is None:
             raise ValueError("You must provide a tag!")
         if self.children is None or self.children == []:
@@ -18,9 +18,18 @@ class ParentNode(HTMLNode):
         
         # TODO Add recursion to handle nested ParentNodes
         # There can be an unknown amount of levels - recursion needed
-        html_body = f"<{self.tag}>"
+        if self.tag is not None:
+            tag = f"<{self.tag}>"
+            end_tag = f"</{self.tag}>"
+        else:
+            tag = ""
+            end_tag = ""
+            
+        html_body = tag
         for leaf in self.children:
+
             html_body += leaf.to_html()
-        html_body += f"</{self.tag}>"
+
+        html_body += end_tag
         return html_body
         
